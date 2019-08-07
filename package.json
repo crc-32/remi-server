@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Node.js Google assistant endpoint",
   "author": "crc-32",
+  "license": "MIT",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
