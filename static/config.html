@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <style>
+        #text {
+            display: none;
+        }
+    </style>
+
+    <script type="text/javascript" src="js/config.js"></script>
+</head>
+<body>
+    <div class="container-fluid mt-3">
+        <select name="type">
+            <option value="json">I want to paste device credentials JSON</option>
+            <option value="text">I want to paste individual values</option>
+        </select>
+        <br/>
+        <div id="text">
+            <input type="text" name="clientid" placeholder="Enter client id">
+            <br/>
+            <input type="text" name="clientsecret" placeholder="Enter client secret">
+            <br/>
+            <input type="text" name="clientrefresh" placeholder="Enter client refresh token">
+            <br/>
+        </div>
+        <div id="json">
+            <textarea name="json" placeholder="Paste device credentials json"></textarea>
+            <br/>
+        </div>
+        <br/>
+        <input type="button" value="Save" id="savebtn">
+    </div>
+</body>

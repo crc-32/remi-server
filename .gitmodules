@@ -1,0 +1,3 @@
+[submodule "assistant-sdk-nodejs"]
+	path = assistant-sdk-nodejs
+	url = https://github.com/googlesamples/assistant-sdk-nodejs.git
