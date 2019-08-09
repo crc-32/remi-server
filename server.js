@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const expressip = require('express-ip');
 
 const GoogleAssistant = require('./assistant-sdk-nodejs/google-assistant-grpc/googleassistant');
 
@@ -10,7 +11,9 @@ const HOST = '0.0.0.0';
 
 // App
 const app = express();
-app.use(express.static('static'))
+app.use(express.static('static'));
+app.use(expressip().getIpInfoMiddleware);
+
 app.get('/assist', (req, res) => {
   if (req.query['query'] !== undefined && req.query['query'].trim() !== "" && req.query['clientid'] !== undefined && req.query['clientid'].trim() !== undefined
   && req.query['clientsecret'] !== undefined && req.query['clientsecret'].trim() !== undefined && req.query['clientrefresh'] !== undefined && req.query['clientrefresh'].trim() !== undefined)
@@ -22,8 +25,18 @@ app.get('/assist', (req, res) => {
       type: "authorized_user"
     };
     
+    let lat;
+    let long;
+    if (req.query['lat'] !== undefined && req.query['long'] !== undefined) {
+      lat = req.query['lat'];
+      long = req.query['long'];
+    } else if (req.ipInfo.ll !== undefined) {
+      lat = req.ipInfo.ll[0];
+      long = req.ipInfo.ll[1];
+    }
+
     const assistant = new GoogleAssistant(CREDENTIALS);
-    assistant.assist(req.query['query']).then(({text, deviceAction}) => {
+    assistant.assist(req.query['query'], lat, long).then(({text, deviceAction}) => {
       if (deviceAction !== undefined)
       {
         console.log(deviceAction);

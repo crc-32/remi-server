@@ -9,6 +9,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.16.1"
+    "express": "^4.16.1",
+    "express-ip": "^1.0.3"
   }
 }
